@@ -41,11 +41,11 @@ inputs:
   android-version:
     description: 'Android version.'
     required: true
-    default: 12
+    default: 14
   ksu:
     description: 'KernelSU function support'
     required: false
-    default: false
+    default: true
   ksu-version:
     description: 'KernelSU default branch'
     required: false
@@ -76,11 +76,11 @@ inputs:
   nethunter:
     description: 'Enable Kali nethunter'
     required: false
-    default: false
+    default: true
   nethunter-patch:
     description: 'patch config'
     required: false
-    default: false
+    default: true
   kvm:
     description: 'Enable KVM for configs.'
     required: false
@@ -88,7 +88,7 @@ inputs:
   ccache:
     description: 'Enable Ccache for compiling kernel'
     required: false
-    default: false
+    default: true
   aosp-gcc:
     description: 'Use gcc from aosp project.'
     required: true
@@ -96,10 +96,10 @@ inputs:
   aosp-clang:
     description: 'Use clang from aosp project.'
     required: false
-    default: false
+    default: true
   aosp-clang-version:
     required: false
-    default: "r383902"
+    default: "r536225"
   other-clang-url:
     required: false
     default: ''
@@ -113,7 +113,7 @@ inputs:
   android-ndk-version:
     description: 'Please press nember instead of r(e.g. : 26).'
     required: false
-    default: r21b
+    default: false
   anykernel3:
     description: 'Package kernel use anykernel3.'
     required: false
@@ -237,9 +237,9 @@ runs:
              if [ ${{ inputs.aosp-gcc }} = true ]; then
                  mkdir $HOME/clang -p -v
                  if [ ! -z ${{ inputs.android-version }} ]; then
-                     aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android${{ inputs.android-version }}-release/clang-${{ inputs.aosp-clang-version }}.tar.gz
+                     aria2c -o aosp-clang.tar.gz 
+                     aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-${{ inputs.aosp-clang-version }}.tar.gzhttps://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android${{ inputs.android-version }}-release/clang-${{ inputs.aosp-clang-version }}.tar.gz
                  else
-                     aria2c -o aosp-clang.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-${{ inputs.aosp-clang-version }}.tar.gz
                  fi
                  tar -C $HOME/clang -zxf aosp-clang.tar.gz
              else
