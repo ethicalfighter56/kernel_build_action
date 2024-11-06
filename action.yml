@@ -45,11 +45,11 @@ inputs:
   ksu:
     description: 'KernelSU function support'
     required: false
-    default: true
+    default: false
   ksu-version:
     description: 'KernelSU default branch'
     required: false
-    default: "main"
+    default: "v0.9.5"
   ksu-other:
     required: false
     default: false
@@ -76,7 +76,7 @@ inputs:
   nethunter:
     description: 'Enable Kali nethunter'
     required: false
-    default: true
+    default: false
   nethunter-patch:
     description: 'patch config'
     required: false
