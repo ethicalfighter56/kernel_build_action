@@ -88,14 +88,14 @@ inputs:
   ccache:
     description: 'Enable Ccache for compiling kernel'
     required: false
-    default: true
+    default: false
   aosp-gcc:
     description: 'Use gcc from aosp project.'
     required: true
     default: true
   aosp-clang:
     description: 'Use clang from aosp project.'
-    required: false
+    required: true
     default: true
   aosp-clang-version:
     required: false
